@@ -5,4 +5,6 @@
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
       python manage.py migrate
-   
+      gunicorn tudo_backend.wsgi:application --bind 0.0.0.0:8000
+      # python manage.py runserver
+      
