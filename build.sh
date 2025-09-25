@@ -1,10 +1,20 @@
+#!/usr/bin/env bash
+# Exit on error
+set -o errexit  
 
-      cd frontend && npm install && npm run build
-      cp -r build ../backend/static/
-      cd ../backend 
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate
-      cd tudo_backend && gunicorn tudo_backend.wsgi:application --bind 0.0.0.0:8000
+# 1. Build frontend
+cd tudo_frontend && npm install && npm run build
 
-     
+# 2. Copy React build files into Django static folder
+cp -r build ../tudo_backend/static/
+
+# 3. Backend setup
+cd ../tudo_backend
+pip install -r ../requirements.txt
+
+# 4. Django collectstatic and migrations
+python manage.py collectstatic --noinput
+python manage.py migrate
+
+# 5. Start Gunicorn server
+gunicorn tudo_backend.wsgi:application --bind 0.0.0.0:8000
