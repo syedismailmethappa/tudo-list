@@ -18,5 +18,5 @@ python manage.py collectstatic --noinput
 python manage.py migrate
 
 # 5. Start Gunicorn server
-gunicorn tudo_backend.tudo_backend.wsgi:application --bind 0.0.0.0:8000
+gunicorn tudo_backend.wsgi:application
 
