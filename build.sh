@@ -1,8 +1,4 @@
-services:
-  - type: web
-    name: fullstack-app
-    env: python
-    buildCommand: |
+
       cd frontend && npm install && npm run build
       cp -r build ../backend/static/
       cd ../backend
