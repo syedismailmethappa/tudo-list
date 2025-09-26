@@ -1,0 +1,1 @@
+web: gunicorn tudo_backend.wsgi
